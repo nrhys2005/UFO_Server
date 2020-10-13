@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "root",
+    "password": "root",
+    "database": "knucoin",
+    "host": "mysql",
+    "dialect": "mysql"
+  }
+}
