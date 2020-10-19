@@ -25,4 +25,6 @@ db.Store.belongsTo(db.User, {
   onDelete: 'CASCADE'
 });
 
+// 
+
 module.exports = db;

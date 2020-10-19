@@ -9,10 +9,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: true,
         },
-        path: {
+        img_url: {
             type: DataTypes.STRING(50),
             allowNull: true,
-        }
+        },
     }, {
         timestamps: false,
     });

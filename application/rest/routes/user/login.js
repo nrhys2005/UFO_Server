@@ -9,9 +9,11 @@ router.post('/', (req, res) =>{
             email : req.body.email,
             pw : req.body.pw
         }
-    }).then(() => {
+    }).then((result) => {
+        console.log(result);
         res.send(true);
-    }).catch(() => {
+    }).catch((err) => {
+        console.log(err);
         res.send(false);
     });
 });
