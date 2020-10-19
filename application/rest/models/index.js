@@ -17,10 +17,10 @@ db.Menu = require('./menu')(sequelize, Sequelize);
 
 // Store, Menu 일대 다 관계
 db.Store.hasMany(db.Menu, {
-  foreignKey: 'store_id',
+  foreignKey: '_id',
   onDelete: 'CASCADE'
 });
-db.Store.belongsTo(db.User, {
+db.Menu.belongsTo(db.Store, {
   foreignKey: 'store_id',
   onDelete: 'CASCADE'
 });
