@@ -4,6 +4,16 @@ const models = require('../../models');
 //store regist
 router.post('/', (req, res) =>{
     console.log('<<store/regist>>');
+    image_path = ""
+    models.Menu.findOne({
+        where: {
+          id: req.body.store_id
+        }
+    }).then((result) => {
+        image_path = "./img_store"+result.name
+    }).catch(()=>{
+        res.json({"result" : 'fail'}); 
+    });
     models.Menu.create({
         store_id : req.body.store_id,
         name : req.body.name,

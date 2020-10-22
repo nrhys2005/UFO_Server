@@ -18,15 +18,18 @@ const upload = multer({
     }),
   });
 
+const fs = require('fs');
 //store regist
 router.post('/', (req, res) =>{
+    image_path = "./img_store"+req.body.name
     models.Store.create({
         name : req.body.name,
-
         desc: req.body.desc,
         latitude : req.body.latitude,
         longitude: req.body.longitude
     }).then((result) => {
+        fs.mkdirSync(image_path, { recursive: true })
+        
         console.log(result);
         upload.single('image');
         res.send(true);
