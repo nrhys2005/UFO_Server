@@ -10,13 +10,14 @@ router.post('/', (req, res) =>{
           id: req.body.store_id
         }
     }).then((result) => {
-        image_path = "./img_store"+result.name
+        image_path = "./img_store"+result.name+"/"+req.body.name
     }).catch(()=>{
         res.json({"result" : 'fail'}); 
     });
     models.Menu.create({
         store_id : req.body.store_id,
         name : req.body.name,
+        img_url : image_path,
         price: req.body.price
     }).then(() => { 
         res.send(true); 

@@ -21,10 +21,11 @@ const upload = multer({
 
 //store regist
 router.post('/', (req, res) =>{
-    image_path = "./img_store"+req.body.name
+    image_path = "./img_store/"+req.body.name+"/"+req.body.name
     models.Store.create({
         name : req.body.name,
         desc: req.body.desc,
+        img_url : image_path,
         latitude : req.body.latitude,
         longitude: req.body.longitude
     }).then((result) => {
