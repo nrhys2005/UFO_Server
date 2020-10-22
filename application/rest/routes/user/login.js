@@ -3,7 +3,6 @@ const router = express.Router();
 const models = require('../../models');
 
 router.post('/', (req, res) =>{
-    console.log('<<user/login>>');
     models.User.findOne({
         where: {
             email : req.body.email,
