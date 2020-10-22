@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const models = require('../../models');
 var multer = require('multer');
-
+const fs = require('fs');
 // multer setting
 const upload = multer({
     storage: multer.diskStorage({
@@ -18,7 +18,7 @@ const upload = multer({
     }),
   });
 
-const fs = require('fs');
+
 //store regist
 router.post('/', (req, res) =>{
     image_path = "./img_store"+req.body.name
