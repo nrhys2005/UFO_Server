@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
 
+app.use('/img_store', express.static('img_store'));
 
 app.use('/', router);
 
