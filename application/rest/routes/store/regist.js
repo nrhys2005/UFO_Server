@@ -26,13 +26,13 @@ const upload = multer({
 //store regist
 router.post('/',multipartMiddleware, (req, res) =>{
     var fname = req.body.name;
-    image_url = "img_store/"+req.body.name+"/"+req.body.name;
+    image_url = "img_store/"+req.body.name;
     // image_path = "img_store/"+req.body.name;
 
     models.Store.create({
         name : req.body.name,
         desc: req.body.desc,
-        img_url : image_url,
+        img_url : image_url+"/"+req.body.name,
         latitude : req.body.latitude,
         longitude: req.body.longitude
     }).then((result) => {
