@@ -1,9 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const models = require('../../models');
-//store regist
-router.get('/', (req, res) =>{
-    console.log('<<store/menu_search>>');
+const models = require('../DataBase/models');
+
+function get_menu(req, res) {
     models.Menu.findAll({
         where: {
           store_id: req.params.store_id
@@ -13,6 +10,9 @@ router.get('/', (req, res) =>{
     }).catch(()=>{
         res.json({"result":"fail"}); 
     });
-});
+}
 
-module.exports = router;
+
+module.exports = {
+    get_menu,
+}

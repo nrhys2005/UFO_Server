@@ -1,13 +1,19 @@
 const express = require('express');
 const router = express.Router();
 
+var user = require('../src/user/user.js');
 
 
-//user routing
-router.use('/regist', require('./regist'));
+router.post('/signin', (req, res) =>{
+    user.signin(req,res);
+});
 
-//로그인 라우팅
-router.use('/login',  require('./login'));
+router.post('/signup', (req, res) =>{
+    user.signup(req,res);
+});
 
+router.get('/signup/check/:id', (req, res) => {
+    user.check(req,res);
+});
 
 module.exports = router;

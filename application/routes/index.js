@@ -5,8 +5,10 @@ router.get('/', function(req, res, next) {
     res.send('index page');
 });
 
-//user routing
+//routing
 router.use('/user', require('./user/index'));
-
 router.use('/store', require('./store/index'));
+router.use('/menu', require('./menu/index'));
+
+
 module.exports = router;
