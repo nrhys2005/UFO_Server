@@ -1,25 +1,10 @@
-const models = require('../DataBase/models');
+const models = require('../../database/models');
 const fs = require('fs');
 
 
-// multer setting
-const upload = multer({
-    storage: multer.diskStorage({
-      // set a localstorage destination
-      destination: (req, file, cb) => {
-        cb(null, 'img_store/');
-      },
-      // file name 중복을 피하기위해 date() 추가.
-      filename: (req, file, cb) => {
-        // cb(null, new Date().valueOf() + path.extname(file.originalname));
-        cb(null, file.originalname);
-      },
-    }),
-  });
-
 function regist_store(req, res) {
-    var fname = req.body.name;
-    image_url = "img_store/"+req.body.name;
+
+    var image_url = "img_store/"+req.body.name;
     // image_path = "img_store/"+req.body.name;
 
     models.Store.create({
@@ -40,7 +25,7 @@ function regist_store(req, res) {
 }
 
 function regist_menu(req,res){
-    image_path = ""
+    var image_path = ""
     models.Menu.findOne({
         where: {
           id: req.body.store_id

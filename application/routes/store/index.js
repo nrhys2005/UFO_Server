@@ -19,7 +19,7 @@ const upload = multer({
     }),
   });
 
-var store = require('../src/store/store.js');
+var store = require('../../src/store/store.js');
 
 //store regist
 router.post('/regist_store',multipartMiddleware, (req, res) =>{

@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const models = require('../DataBase/models');
+const models = require('../../database/models');
 
 function signin(req, res) {
     models.User.findOne({

@@ -1,4 +1,4 @@
-const models = require('../DataBase/models');
+const models = require('../../database/models');
 
 function get_menu(req, res) {
     models.Menu.findAll({

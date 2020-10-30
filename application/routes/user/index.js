@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-var user = require('../src/user/user.js');
+var user = require('../../src/user/user.js');
 
 
 router.post('/signin', (req, res) =>{
