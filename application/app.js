@@ -1,17 +1,8 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
-var sequelize = require('./database').sequelize;
-
-const PORT = 8080;
-const HOST = '0.0.0.0';//HOST를 localhost로 하니까 response를 보내지 못한다.
-
-// DB 연결
-sequelize.sync().then((res)=>{
-  console.log("DB connect success!!");
-}).catch(function(error){
-  console.log(error);
-});
+const db = require('./database').sequelize;
+const config = require('./bin/config').web.development
 
 // Body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,6 +10,15 @@ app.use(bodyParser.json())
 
 app.use('/', require('./routes'));
 
-app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+const port = config.port;
+app.listen(port, () => {
+
+  // console.log(`Running on http://${HOST}:${PORT}`);
+
+  // DB 연결
+  db.sync().then( () => {
+    console.log("DB connect success!!");
+  })
+})
+
 
