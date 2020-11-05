@@ -1,4 +1,4 @@
-const models = require('../database')
+const models = require('../../database')
 const fs = require('fs');
 
 exports.regist_store = (req, res) => {
@@ -18,29 +18,6 @@ exports.regist_store = (req, res) => {
         res.send(true);
     }).catch((err)=>{
         console.log(err);
-        res.send(false); 
-    });
-}
-
-exports.regist_menu = (req, res) => {
-    var image_path = ""
-    models.Menu.findOne({
-        where: {
-          id: req.body.store_id
-        }
-    }).then((result) => {
-        image_path = "./img_store"+result.name+"/"+req.body.name
-    }).catch(()=>{
-        res.json({"result" : 'fail'}); 
-    });
-    models.Menu.create({
-        store_id : req.body.store_id,
-        name : req.body.name,
-        img_url : image_path,
-        price: req.body.price
-    }).then(() => { 
-        res.send(true); 
-    }).catch(()=>{
         res.send(false); 
     });
 }

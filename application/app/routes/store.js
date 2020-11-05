@@ -23,6 +23,5 @@ const upload = multer({
 });
 
 router.post('/regist_store', multipartMiddleware, store.regist_store)
-// router.post('/img', upload.single("image"), store.)
-router.post('/regist_menu', store.regist_menu)
 router.get('/get_store', store.get_store)
+// router.post('/img', upload.single("image"), store.)
