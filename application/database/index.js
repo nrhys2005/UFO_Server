@@ -1,12 +1,11 @@
 'use strict';
 
 const Sequelize = require('sequelize');
-const env = 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const config = require('../bin/config').db.development
+
 const db = {};
 
 var sequelize = new Sequelize(config.database, config.username, config.password, config);
-
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
@@ -24,7 +23,5 @@ db.Menu.belongsTo(db.Store, {
   foreignKey: 'store_id',
   onDelete: 'CASCADE'
 });
-
-// 
 
 module.exports = db;

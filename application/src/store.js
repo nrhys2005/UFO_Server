@@ -1,4 +1,4 @@
-const models = require('../database/models')
+const models = require('../database')
 const fs = require('fs');
 
 exports.regist_store = (req, res) => {

@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 const bodyParser = require('body-parser');
-var sequelize = require('./database/models/index').sequelize;
+var sequelize = require('./database').sequelize;
 
 const PORT = 8080;
 const HOST = '0.0.0.0';//HOST를 localhost로 하니까 response를 보내지 못한다.
