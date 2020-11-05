@@ -1,7 +1,7 @@
 const crypto = require('crypto');
-const models = require('../../database/models');
+const models = require('../database/models')
 
-function signin(req, res) {
+exports.signin = (req, res) => {
     models.User.findOne({
         where: {
             email : req.body.email,
@@ -16,7 +16,7 @@ function signin(req, res) {
     });
 }
 
-function signup(req, res) {
+exports.signup = (req, res) => {
     models.User.create({
         email: req.body.email,
         pw: req.body.pw,
@@ -30,7 +30,7 @@ function signup(req, res) {
     });
 }
 
-function check(req, res) {
+exports.check = (req, res) => {
     models.User.findOne({
         where: { email: req.params.email }
     }).then((result) => {
@@ -40,10 +40,4 @@ function check(req, res) {
         console.log(error);
         res.send(false);
     });
-}
-
-module.exports = {
-    signin,
-    signup,
-    check
 }

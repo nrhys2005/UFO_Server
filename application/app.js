@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 const bodyParser = require('body-parser');
-var router = require('./routes/index');
 var sequelize = require('./database/models/index').sequelize;
 
 const PORT = 8080;
@@ -18,9 +17,7 @@ sequelize.sync().then((res)=>{
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
-app.use('/', router);
-
-
+app.use('/', require('./routes'));
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);

@@ -1,9 +1,7 @@
-const models = require('../../database/models');
+const models = require('../database/models')
 const fs = require('fs');
 
-
-function regist_store(req, res) {
-
+exports.regist_store = (req, res) => {
     var image_url = "img_store/"+req.body.name;
     // image_path = "img_store/"+req.body.name;
 
@@ -24,7 +22,7 @@ function regist_store(req, res) {
     });
 }
 
-function regist_menu(req,res){
+exports.regist_menu = (req, res) => {
     var image_path = ""
     models.Menu.findOne({
         where: {
@@ -47,7 +45,7 @@ function regist_menu(req,res){
     });
 }
 
-function get_store(req,res){
+exports.get_store = (req, res) => {
     models.Menu.findAll({
         where: {
           store_id: req.params.store_id
@@ -57,11 +55,4 @@ function get_store(req,res){
     }).catch(()=>{
         res.json({"result":"fail"}); 
     });
-}
-
-
-module.exports = {
-    regist_store,
-    regist_menu,
-    get_store
 }

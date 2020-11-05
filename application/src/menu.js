@@ -1,6 +1,6 @@
-const models = require('../../database/models');
+const models = require('../database/models')
 
-function get_menu(req, res) {
+exports.get_menu = (req, res) => {
     models.Menu.findAll({
         where: {
           store_id: req.params.store_id
@@ -10,9 +10,4 @@ function get_menu(req, res) {
     }).catch(()=>{
         res.json({"result":"fail"}); 
     });
-}
-
-
-module.exports = {
-    get_menu,
 }
