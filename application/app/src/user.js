@@ -2,6 +2,15 @@ const crypto = require('crypto');
 const models = require('../../database')
 
 exports.signin = (req, res) => {
+    /*
+    id = req.body.id
+    admin = req.body.admin
+    org = req.body.org
+    user = [id, org, admin]
+    //args = [id, admin, org]
+     sdk.send(true, user, '', args, true, res)
+    //sdk.main(args, res)
+    */
     models.User.findOne({
         where: {
             email : req.body.email,

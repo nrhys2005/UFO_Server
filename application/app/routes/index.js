@@ -9,5 +9,7 @@ const router = express.Router();
 router.use('/user', require('./user'))
 router.use('/store', require('./store'))
 router.use('/menu', require('./menu'))
+router.use('/wallet', require('./wallet'))
+
 
 module.exports = router;
