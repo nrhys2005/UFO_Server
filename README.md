@@ -39,6 +39,7 @@
     * DataBase 정보, Port, ip 등 환경변수화?
 * AWS
     * 파일 업로드 스토리지 S3로 전환
+    * EC2 Instance 및 RDS 생성
 
 ## 개발 계획
 * NodeJS
@@ -46,5 +47,6 @@
     * user 테이블 지우고 로그인을 카카오 로그인으로 대체
     * Fabric Network 안정화 시 Wallet 작업(송금, 잔액확인 등)
 * AWS
-    * Server 관련 리소스 및 환경설정 변경하여 EC2로 이관 구현
+    * ~~Server 관련 리소스 및 환경설정 변경하여 EC2로 이관 구현~~
     * S3 이용하여 Fabric Network의 인증서 파일, 이미지 등 정적파일 관리 구현
+    * LoadBalancer, AutoScaling Group 구축
