@@ -5,9 +5,7 @@ var path = require('path');
 
 async function send(type, user, func, args, admin, res){
     try {
-
         let ccpPath = '';
-        let ca_name = ''
         let url = ''
         switch(user[1]){
             case `SalesOrg`:
