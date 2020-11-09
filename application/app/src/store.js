@@ -15,18 +15,20 @@ exports.upload_module = multer({
 })
 
 exports.regist_store = (req, res) => {
-    var image_url = "img_store/" + req.body.name;
+    // var image_url = "img_store/" + req.body.name;
     // image_path = "img_store/"+req.body.name;
+    var image_url = "boothic1";
 
     models.Store.create({
         name: req.body.name,
         desc: req.body.desc,
-        img_url: image_url + "/" + req.body.name,
+        img_url: image_url,
         latitude: req.body.latitude,
-        longitude: req.body.longitude
+        longitude: req.body.longitude,
+        festival: req.body.festival
     }).then((result) => {
-        fs.mkdirSync(image_url, { recursive: true });
-        console.log("make dir done");
+        // fs.mkdirSync(image_url, { recursive: true });
+        // console.log("make dir done");
         console.log(result);
         res.send(true);
     }).catch((err) => {
@@ -35,13 +37,25 @@ exports.regist_store = (req, res) => {
     });
 }
 
+// exports.get_store = (req, res) => {
+//     models.Menu.findAll({
+//         where: {
+//             store_id: req.params.store_id
+//         }
+//     }).then((result) => {
+//         res.json({ "result": "ok", result });
+//     }).catch(() => {
+//         res.json({ "result": "fail" });
+//     });
+// }
+
 exports.get_store = (req, res) => {
-    models.Menu.findAll({
+    models.Store.findAll({
         where: {
-            store_id: req.params.store_id
+            festival: req.params.id
         }
     }).then((result) => {
-        res.json({ "result": "ok", result });
+        res.json(result);
     }).catch(() => {
         res.json({ "result": "fail" });
     });

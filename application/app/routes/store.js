@@ -6,7 +6,8 @@ const upload = store.upload_module
 module.exports = router
 
 // router.post('/regist_store', multipartMiddleware, store.regist_store)
-router.get('/get_store', store.get_store)
+router.get('/get/:id', store.get_store)
+router.post('/regist', store.regist_store)
 router.post('/img', upload.array("image"), (req, res) => {
 
     let files = req.files

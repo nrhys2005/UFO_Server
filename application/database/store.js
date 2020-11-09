@@ -3,8 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     return sequelize.define('Store', {
         name: {
             type: DataTypes.STRING(45),
-            allowNull: false,
-            unique: true,
+            allowNull: false
         },
         img_url:{
             type: DataTypes.STRING(50),
@@ -21,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
         longitude: {
             type: DataTypes.FLOAT(20),
             allowNull: true,
+        },
+        festival: {
+            type: DataTypes.STRING(10),
+            allowNull: false,
         }
     }, {
         timestamps: false,

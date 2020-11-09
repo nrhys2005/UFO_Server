@@ -4,5 +4,5 @@ const menu = require('../src/menu')
 
 module.exports = router
 
-router.get('/get_menus', menu.get_menu)
-router.post('/regist_menu', menu.regist_menu)
+router.get('/get/:id', menu.get_menu)
+router.post('/regist', menu.regist_menu)

@@ -3,10 +3,10 @@ const models = require('../../database')
 exports.get_menu = (req, res) => {
   models.Menu.findAll({
     where: {
-      store_id: req.params.store_id
+      store_id: req.params.id
     }
   }).then((result) => {
-    res.json({ "result": "ok", result });
+    res.json(result);
   }).catch(() => {
     res.json({ "result": "fail" });
   });
