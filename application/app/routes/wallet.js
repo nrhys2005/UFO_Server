@@ -4,6 +4,6 @@ const wallet = require('../src/wallet')
 
 module.exports = router
 
-router.post('/payment ', wallet.chargeMoney )
+router.post('/chargeMoney ', wallet.chargeMoney )
 router.post('/transferMoney ', wallet.transferMoney )
 router.post('/getWallet ', wallet.getWallet )
