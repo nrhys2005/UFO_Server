@@ -50,3 +50,36 @@
     * ~~Server 관련 리소스 및 환경설정 변경하여 EC2로 이관 구현~~
     * S3 이용하여 Fabric Network의 인증서 파일, 이미지 등 정적파일 관리 구현
     * LoadBalancer, AutoScaling Group 구축
+    
+## 서비스 흐름
+
+- 앱 실행시
+    - Sales 유저
+        - Sales 그룹으로 가입
+            - 기존에 Customer 였으면 Sales로 새로 생성 후 잔액 이체
+    - 일반 사용자
+        - Customer 그룹으로 가입
+- Splash
+    - 최초 실행시
+        - 사용자가 선택한 Festival ID로 Festival, Store, Menu Info 반환
+    - 이후 실행시
+        - ETag를 활용 업데이트 여부 확인
+- Home
+    - 충전
+    - 송금
+- Festival
+    - 축제 선택, 스토어 선텍, 메뉴 선택시 ETag를 통해 수정사항 확인
+- MyPage
+    - 회원정보 띄우기
+        - 거래 내역 정보 반화
+        - 충전 내역 정보 반환
+- 축제 종료시
+    - 정산
+    - Sales의 거래 통계
+    - 몇 일의 유예기간을 두고 Sales 아이디 삭제
+
+
+- AWS
+    - VPC, Subnet
+    - S3 CA json 파일 참조
+    - EC2, LoadBalancer, AutoScaling
