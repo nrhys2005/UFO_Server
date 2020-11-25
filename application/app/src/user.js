@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const models = require('../../database')
 
 //유저 확인
-exports.signin = (req, res) => {
+exports.login = (req, res) => {
     /*
     id = req.body.id
     admin = req.body.admin
@@ -96,7 +96,40 @@ exports.regist_sales = (req, res) => {
         res.send(false);    
     });
 }
-
+//회원탈퇴
+exports.sigonut = (req, res) => {
+    models.User.destroy({
+        where: { kakao_id : kakao_id }
+    }).then((result) => {
+        console.log(result);
+        res.send(true);
+    }).catch((error) => {
+        console.log(error);
+        res.send(false);    
+    });
+}
+//put user(비밀번호 바꾸기) == regist_pw와 같음
+exports.change_pw = (req, res) => {
+    const saltRounds = 12
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+        if(err) return res.send(false)
+        bcrypt.hash(req.body.pw, salt, function(err, hash) {
+            // Store hash in your password DB.
+            if(err) return res.send(false);
+            models.User.update({
+                pw : hash
+            },{
+                where: { kakao_id: req.body.kakao_id } 
+            }).then((result) => {
+                console.log(result);
+                res.send(true);
+            }).catch((error) => {
+                console.log(error);
+                res.send(false);
+            });
+        });
+    });
+}
 //check 현재는 안씀
 exports.check = (req, res) => {
     models.User.findOne({
