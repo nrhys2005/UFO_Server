@@ -13,6 +13,7 @@ db.Sequelize = Sequelize;
 db.User = require('./user')(sequelize, Sequelize);
 db.Store = require('./store')(sequelize, Sequelize);
 db.Menu = require('./menu')(sequelize, Sequelize);
+db.Festival = require('./festival')(sequelize, Sequelize);
 
 // Store, Menu 일대 다 관계
 // db.Store.hasMany(db.Menu, {

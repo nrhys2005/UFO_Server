@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(50),
             allowNull: true,
         },
+        store_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }
     }, {
         timestamps: false,
     });

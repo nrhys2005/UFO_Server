@@ -1,16 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
-    //이름 이미지 설명 메뉴
-    return sequelize.define('Store', {
+    return sequelize.define('Festival', {
         name: {
             type: DataTypes.STRING(45),
-            allowNull: false
+            allowNull: false,
         },
-        img_url:{
+        img_url: {
             type: DataTypes.STRING(50),
-            allowNull: true,
-        },
-        desc:{
-            type: DataTypes.STRING(100),
             allowNull: true,
         },
         start_time: {
@@ -29,10 +24,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DOUBLE,
             allowNull: true,
         },
-        festival_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        }
+        desc: {
+            type: DataTypes.STRING(100),
+            allowNull: true,
+        },
     }, {
         timestamps: false,
     });
