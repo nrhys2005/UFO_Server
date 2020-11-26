@@ -12,51 +12,76 @@ exports.upload_module = multer({
             cb(null, Math.floor(Math.random() * 1000).toString() + Date.now().toString())
         }
     })
-})
+});
+
+exports.get_store = (req, res) => {
+    models.Store.findAll({
+        where:{
+            festival_id: req.params.id
+        },
+    }).then((result) => {
+        var data = JSON.parse(JSON.stringify(result));
+        res.status(200).json(data);
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json({ "result": "fail" });
+    });
+};
 
 exports.regist_store = (req, res) => {
-    // var image_url = "img_store/" + req.body.name;
-    // image_path = "img_store/"+req.body.name;
     var image_url = "boothic1";
 
     models.Store.create({
         name: req.body.name,
-        desc: req.body.desc,
         img_url: image_url,
+        desc: req.body.desc,
+        start_time: req.body.start_time,
+        end_time: req.body.end_time,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
-        festival: req.body.festival
+        festival_id: req.body.festival_id,
     }).then((result) => {
-        // fs.mkdirSync(image_url, { recursive: true });
-        // console.log("make dir done");
         console.log(result);
         res.send(true);
     }).catch((err) => {
         console.log(err);
         res.send(false);
     });
-}
+};
 
-// exports.get_store = (req, res) => {
-//     models.Menu.findAll({
-//         where: {
-//             store_id: req.params.store_id
-//         }
-//     }).then((result) => {
-//         res.json({ "result": "ok", result });
-//     }).catch(() => {
-//         res.json({ "result": "fail" });
-//     });
-// }
-
-exports.get_store = (req, res) => {
-    models.Store.findAll({
-        where: {
-            festival: req.params.id
+exports.update_store = (req, res) => {
+    models.Store.update({
+        name: req.body.name,
+        img_url: image_url,
+        desc: req.body.desc,
+        start_time: req.body.start_time,
+        end_time: req.body.end_time,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
+        festival_id: req.params.festival_id,
+        where:{
+            id: req.params.store_id,
         }
     }).then((result) => {
-        res.json(result);
+        var data = JSON.parse(JSON.stringify(result));
+        res.status(200).json(data);
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json({ "result": "fail" });
+    });
+};
+
+
+exports.delete_store = (req, res) => {
+    models.Store.destroy({
+        where: {
+            festival_id: req.params.festival_id,
+            id: req.params.store_id,
+        }
+    }).then((result) => {
+        var data = JSON.parse(JSON.stringify(result));
+        res.status(200).json(data);
     }).catch(() => {
-        res.json({ "result": "fail" });
+        res.status(500).json({ "result": "fail" });
     });
 }
