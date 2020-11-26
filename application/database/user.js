@@ -5,10 +5,6 @@ module.exports =(sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
-    org: {
-      type: DataTypes.STRING(15),
-      allowNull: false,
-    },
     pw: {
       type: DataTypes.STRING(1000),
       allowNull: false,

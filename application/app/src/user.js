@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const models = require('../../database')
-
+const saltRounds = 12
 //유저 확인
 exports.login = (req, res) => {
     /*
@@ -40,8 +40,7 @@ exports.signup = (req, res) => {
     });
 }
 //결제pw 등록(미완)
-exports.regist_pw = (req, res) => {
-    const saltRounds = 12
+exports.update_transaction_pw = (req, res) => {
     bcrypt.genSalt(saltRounds, function(err, salt) {
         if(err) return res.send(false)
         bcrypt.hash(req.body.pw, salt, function(err, hash) {
@@ -62,7 +61,7 @@ exports.regist_pw = (req, res) => {
     });  
 }
 //결제pw 확인(미완)
-exports.check_pw = (req, res) => {
+exports.check_transaction_pw = (req, res) => {
     models.User.findOne({
         attributes: ['pw']
     },{
@@ -108,29 +107,9 @@ exports.sigonut = (req, res) => {
         res.send(false);    
     });
 }
-//put user(비밀번호 바꾸기) == regist_pw와 같음
-exports.change_pw = (req, res) => {
-    const saltRounds = 12
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-        if(err) return res.send(false)
-        bcrypt.hash(req.body.pw, salt, function(err, hash) {
-            // Store hash in your password DB.
-            if(err) return res.send(false);
-            models.User.update({
-                pw : hash
-            },{
-                where: { kakao_id: req.body.kakao_id } 
-            }).then((result) => {
-                console.log(result);
-                res.send(true);
-            }).catch((error) => {
-                console.log(error);
-                res.send(false);
-            });
-        });
-    });
-}
+
 //check 현재는 안씀
+/*
 exports.check = (req, res) => {
     models.User.findOne({
         where: { email: req.params.email }
@@ -142,3 +121,4 @@ exports.check = (req, res) => {
         res.send(false);
     });
 }
+*/
