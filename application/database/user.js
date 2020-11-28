@@ -5,15 +5,15 @@ module.exports =(sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
-    pw: {
+    transaction_pw: {
+      type: DataTypes.STRING(1000),
+      allowNull: true,
+    },
+    customer_id: {
       type: DataTypes.STRING(1000),
       allowNull: false,
     },
-    customer: {
-      type: DataTypes.STRING(1000),
-      allowNull: false,
-    },
-    sales: {
+    sales_id: {
       type: DataTypes.STRING(1000),
       allowNull: true,
     },

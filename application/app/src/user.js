@@ -17,7 +17,7 @@ exports.login = (req, res) => {
             kakao_id : req.body.kakao_id    
         }
     }).then((result) => {
-        console.log('login : ' + kakao_id);
+        console.log('login : ' + req.body.kakao_id);
         res.send(true);
     }).catch((err) => {
         console.log(err);
@@ -30,7 +30,7 @@ exports.signup = (req, res) => {
     var customer_id = req.body.kakao_id + "_c"
     bcrypt.genSalt(saltRounds, function(err, salt) {
         if(err) return res.send(false)
-        bcrypt.hash(sales_id, salt, function(err, hash) {
+        bcrypt.hash(customer_id, salt, function(err, hash) {
             if(err) return res.send(false);
             models.User.create({
                 kakao_id: kakao_id,
@@ -59,15 +59,13 @@ exports.signup = (req, res) => {
 }
 //결제pw 등록
 exports.update_transaction_pw = (req, res) => {
-    var password = req.body.pw
+    var password = req.body.transaction_pw
     bcrypt.genSalt(saltRounds, function(err, salt) {
         if(err) return res.send(false)
         bcrypt.hash(password, salt, function(err, hash) {
-            // Store hash in your password DB.
             if(err) return res.send(false);
             models.User.update({
-                pw : hash
-            },{
+                transaction_pw : hash},{
                 where: { kakao_id: req.body.kakao_id } 
             }).then((result) => {
                 console.log(result);
@@ -82,13 +80,11 @@ exports.update_transaction_pw = (req, res) => {
 //결제pw 확인(미완)
 exports.check_transaction_pw = (req, res) => {
     models.User.findOne({
-        attributes: ['pw']
-    },{
         where: {
             kakao_id : req.body.kakao_id    
         }
     }).then((result) => {
-        bcrpt.compare(req.pw,result.pw)
+        bcrypt.compare(req.body.transaction_pw,result.transaction_pw)
         .then(result => {
             if(result) res.send(true)
             else res.send(false)

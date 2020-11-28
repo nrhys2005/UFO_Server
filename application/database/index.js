@@ -5,7 +5,7 @@ const config = require('../bin/config').db.development
 
 const db = {};
 
-var sequelize = new Sequelize(config.database, config.username, config.password,config.port, config);
+var sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
@@ -20,9 +20,9 @@ db.Festival = require('./festival')(sequelize, Sequelize);
 //   foreignKey: '_id',
 //   onDelete: 'CASCADE'
 // });
-db.Menu.belongsTo(db.Store, {
-  foreignKey: 'store_id',
-  onDelete: 'CASCADE'
-});
+// db.Menu.belongsTo(db.Store, {
+//   foreignKey: 'store_id',
+//   onDelete: 'CASCADE'
+// });
 
 module.exports = db;
