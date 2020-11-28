@@ -5,7 +5,7 @@ const config = require('../bin/config').db.development
 
 const db = {};
 
-var sequelize = new Sequelize(config.database, config.username, config.password, config);
+var sequelize = new Sequelize(config.database, config.username, config.password,config.port, config);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

@@ -17,6 +17,7 @@ db.development.username = env.DBUSERNAME
 db.development.password = env.DBPASSWORD
 db.development.database = env.DBDATABASE
 db.development.host = env.DBHOST
+db.development.port = 3307
 db.development.dialect = env.DBDIALECT
 
 aws = {}
