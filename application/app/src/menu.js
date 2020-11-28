@@ -45,11 +45,13 @@ exports.update_menu = (req, res) => {
     name: req.body.name,
     price: req.body.price,
     img_url: req.body.img_url,
+  },{
     where: {
       // festival_id: req.params.festival_id,
       store_id: req.params.store_id
     }
-  }).then((result) => {
+  }
+  ).then((result) => {
     var data = JSON.parse(JSON.stringify(result));
     res.status(200).json(data);
   }).catch((err) => {

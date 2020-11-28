@@ -53,10 +53,12 @@ exports.update_festival = (req, res) => {
         latitude: req.body.latitude,
         longitude: req.body.longitude,
         desc: req.body.desc,
+    },{
         where: {
             id: req.body.id
         }
-    }).then((result) => {
+    }
+    ).then((result) => {
         var data = JSON.parse(JSON.stringify(result));
         res.status(200).json(data);
     }).catch((err) => {

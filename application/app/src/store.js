@@ -59,6 +59,7 @@ exports.update_store = (req, res) => {
         latitude: req.body.latitude,
         longitude: req.body.longitude,
         festival_id: req.params.festival_id,
+    },{
         where:{
             id: req.params.store_id,
         }
