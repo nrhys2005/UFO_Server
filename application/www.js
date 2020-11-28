@@ -3,8 +3,8 @@ const db = require('./database')
 const config = require('./bin/config').web.development
 
 const port = config.port
-
-app.listen(port, () => {
+const host = config.host
+app.listen(port, host, () => {
     // console.log(`Running on http://${HOST}:${PORT}`);
 
     // DB 연결

@@ -6,7 +6,8 @@ exports.get_all_festival = (req, res) => {
     }).then((result) => {
         var data = JSON.parse(JSON.stringify(result));
         res.status(200).json(data);
-    }).catch(() => {
+    }).catch((err) => {
+        console.log(err);
         res.status(500).json({ "result": "fail" });
     });
 };
@@ -19,7 +20,8 @@ exports.get_festival_by_id = (req, res) => {
     }).then((result) => {
         var data = JSON.parse(JSON.stringify(result));
         res.status(200).json(data);
-    }).catch(() => {
+    }).catch((err) => {
+        console.log(err);
         res.status(500).json({ "result": "fail" });
     });
 };
@@ -36,7 +38,8 @@ exports.regist_festival = (req, res) => {
     }).then((result) => {
         var data = JSON.parse(JSON.stringify(result));
         res.status(200).json(data);
-    }).catch(() => {
+    }).catch((err) => {
+        console.log(err);
         res.status(500).json({ "result": "fail" });
     });
 };
@@ -56,7 +59,8 @@ exports.update_festival = (req, res) => {
     }).then((result) => {
         var data = JSON.parse(JSON.stringify(result));
         res.status(200).json(data);
-    }).catch(() => {
+    }).catch((err) => {
+        console.log(err);
         res.status(500).json({ "result": "fail" });
     });
 };
@@ -69,7 +73,8 @@ exports.delete_festival = (req, res) => {
     }).then((result) => {
         var data = JSON.parse(JSON.stringify(result));
         res.status(200).json(data);
-    }).catch(() => {
+    }).catch((err) => {
+        console.log(err);
         res.status(500).json({ "result": "fail" });
     });
 };

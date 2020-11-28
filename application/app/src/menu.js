@@ -3,14 +3,19 @@ const models = require('../../database')
 exports.get_menu = (req, res) => {
   models.Menu.findAll({
     where: {
-      store_id: req.params.id
+      // festival_id: req.params.festival_id,
+      store_id: req.params.store_id
     }
   }).then((result) => {
-    res.json(result);
-  }).catch(() => {
-    res.json({ "result": "fail" });
+    var data = JSON.parse(JSON.stringify(result));
+    res.status(200).json(data);
+  }).catch((err) => {
+    console.log(err);
+    res.status(500).json({ "result": "fail" });
   });
-}
+};
+
+
 
 exports.regist_menu = (req, res) => {
   var image_path = ""
@@ -33,4 +38,37 @@ exports.regist_menu = (req, res) => {
   }).catch(() => {
     res.send(false);
   });
-}
+};
+
+exports.update_menu = (req, res) => {
+  models.Menu.update({
+    name: req.body.name,
+    price: req.body.price,
+    img_url: req.body.img_url,
+    where: {
+      // festival_id: req.params.festival_id,
+      store_id: req.params.store_id
+    }
+  }).then((result) => {
+    var data = JSON.parse(JSON.stringify(result));
+    res.status(200).json(data);
+  }).catch((err) => {
+    console.log(err);
+    res.status(500).json({ "result": "fail" });
+  });
+};
+
+exports.delete_menu = (req, res) => {
+  models.Menu.delete({
+    where: {
+      id: req.params.menu_id,
+      store_id: req.params.store_id,
+    }
+  }).then((result) => {
+    var data = JSON.parse(JSON.stringify(result));
+    res.status(200).json(data);
+  }).catch((err) => {
+    console.log(err);
+    res.status(500).json({ "result": "fail" });
+  });
+};
