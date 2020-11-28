@@ -1,7 +1,9 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
+const express = require('express'),
+    app = express(),
+    bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser');
 
+app.use(cookieParser())
 // Body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())

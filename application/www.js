@@ -1,6 +1,6 @@
-const app = require('./app/app');
-const db = require('./database')
-const config = require('./bin/config').web.development
+const app = require('./app/app'),
+    db = require('./database'),
+    config = require('./bin/config').web.development;
 
 const port = config.port
 const host = config.host

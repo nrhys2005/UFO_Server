@@ -12,16 +12,25 @@ exports.login = (req, res) => {
      sdk.send(true, user, '', args, true, res)
     //sdk.main(args, res)
     */
+   
     models.User.findOne({
         where: {
             kakao_id : req.body.kakao_id    
         }
     }).then((result) => {
-        console.log('login : ' + req.body.kakao_id);
-        res.send(true);
+        if(result.length==0){
+            res.send(false)
+        }
+        else{
+            console.log('login : ' + req.body.kakao_id);
+            req.session.user_id = login_id;
+            req.session.login = true;
+            req.session.save();
+            res.send(true);
+        }
     }).catch((err) => {
         console.log(err);
-        res.send(false);
+        req.session.login = false;
     });
 }
 //유저등록

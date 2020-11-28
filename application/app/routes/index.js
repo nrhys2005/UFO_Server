@@ -1,6 +1,12 @@
 const express = require('express');
 const router = express.Router();
+var session = require('express-session');
 
+router.use(session({
+    secret: 'session_secret!',
+    resave: false,
+    saveUninitialized: true,
+}));
 //routing
 // router.use('/user', require('./user/index.js'));
 // router.use('/store', require('./store/index.js'));
