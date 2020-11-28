@@ -5,9 +5,9 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        container_name: node_test
+        container_name: ufo_server
         volumes:
-            - ./:/app
+            - ./:/application
         ports:
             - "5000:8080"
         # DB연결

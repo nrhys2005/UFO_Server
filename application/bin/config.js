@@ -9,6 +9,7 @@ const env = process.env
 web = {}
 web.development = {}
 web.development.port = env.PORT
+web.development.host = env.HOST
 
 db = {}
 db.development = {}

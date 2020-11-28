@@ -7,8 +7,6 @@ const router = express.Router();
 // router.use('/menu', require('./menu/index.js'));
 
 router.use('/user', require('./user'));
-router.use('/store', require('./store'));
-router.use('/menu', require('./menu'));
 router.use('/wallet', require('./wallet'));
 router.use('/festival', require('./festival'));
 
