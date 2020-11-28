@@ -20,9 +20,9 @@ db.Festival = require('./festival')(sequelize, Sequelize);
 //   foreignKey: '_id',
 //   onDelete: 'CASCADE'
 // });
-db.Menu.belongsTo(db.Store, {
-  foreignKey: 'store_id',
-  onDelete: 'CASCADE'
-});
+// db.Menu.belongsTo(db.Store, {
+//   foreignKey: 'store_id',
+//   onDelete: 'CASCADE'
+// });
 
 module.exports = db;
