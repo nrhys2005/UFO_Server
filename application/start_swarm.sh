@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# .env setting 은 이렇게 해 주세요
+# HOST = 0.0.0.0
+# PORT = 8080
+
+
+# DBUSERNAME = "root"
+# DBPASSWORD = "root"
+# DBHOST = "mysql"
+# DBDIALECT = "mysql"
+# DBDATABASE = "ufo"
+
 # swarm 시작, 세팅
 docker swarm init;
 
