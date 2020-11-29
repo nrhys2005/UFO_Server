@@ -16,7 +16,7 @@ exports.login = (req, res) => {
         where: {
             kakao_id : req.body.kakao_id    
         }
-    }).then((result) => {
+    }).then(() => {
         console.log('login : ' + req.body.kakao_id);
         res.send(true);
     }).catch((err) => {
