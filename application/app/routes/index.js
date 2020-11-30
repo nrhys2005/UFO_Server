@@ -10,6 +10,15 @@ var os = require('os');
 router.get('/', (req,res)=>{
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end(`<h1>I'm ${os.hostname()}</h1>`);
+});
+
+var redis_cache = require('../../database/redis/index');
+
+router.post('/cache_test', (req,res)=>{
+    redis_cache.set_cache(req,res);
+});
+router.get('/cache_test/:key', (req,res)=>{
+    redis_cache.get_cache(req,res);
 })
 
 router.use('/user', require('./user'));

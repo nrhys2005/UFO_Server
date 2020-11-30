@@ -1,15 +1,21 @@
 #!/bin/bash
 
+
+########################################
 # .env setting 은 이렇게 해 주세요
 # HOST = 0.0.0.0
 # PORT = 8080
 
+# DBUSERNAME = root
+# DBPASSWORD = root
+# DBHOST = mysql
+# DBDIALECT = mysql
+# DBDATABASE = ufo
 
-# DBUSERNAME = "root"
-# DBPASSWORD = "root"
-# DBHOST = "mysql"
-# DBDIALECT = "mysql"
-# DBDATABASE = "ufo"
+# REDISPORT = 6000
+# REDISHOST = redis
+# REDISPASSWORD = redispw
+########################################
 
 # swarm 시작, 세팅
 docker swarm init;
@@ -17,7 +23,7 @@ docker swarm init;
 sleep 1;
 
 # stack으로 서비스 묶고 yaml파일의 옵션대로 실행
-docker stack deploy --compose-file=docker-compose.yaml UFO
+docker stack deploy --compose-file=swarm-docker-compose.yaml UFO
 
 # localhost 접속해보기.
 
