@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const models = require("../../database");
 const saltRounds = 12;
 //로그인
-exports.login = (req, res) => {
+exports.login = function (req, res) {
   login_id = req.body.kakao_id;
   models.User.findOne({
     where: {
@@ -18,34 +18,34 @@ exports.login = (req, res) => {
         res.send(true);
       }
     })
-    .catch((err) => {
+    .catch((err) => { 
       console.log(err);
       res.send(false);
     });
 };
 //로그아웃
-exports.logout = (req, res) => {
-  req.session.destroy(function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      req.session.destroy(function (err) {
-        if (err) {
-          console.log(err);
-        } else {
-          res.send(true);
-        }
-      });
+exports.logout = function (req, res) {
+    if (req.session.kakao_id) {
+        req.session.destroy(function (err) {
+            if (err) {
+                console.log(err);
+                res.send(false);
+            } else {
+                res.send(true);
+            }
+        });
     }
-  });
+    else{
+        res.send(false);
+    }
 };
 //세션확인
 exports.islogin = (req, res) => {
   //세션값이 있으면
   if (req.session.kakao_id) {
     res.send(true);
-  } 
-  else {//없으면
+  } else {
+    //없으면
     res.send(false);
   }
 };

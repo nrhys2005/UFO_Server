@@ -15,6 +15,7 @@
 # REDISPORT = 6000
 # REDISHOST = redis
 # REDISPASSWORD = redispw
+# REDISSECRET = UFO
 ########################################
 
 

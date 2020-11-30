@@ -24,6 +24,7 @@ redis.development = {}
 redis.development.host = env.REDISHOST
 redis.development.port = env.REDISPORT
 redis.development.password = env.REDISPASSWORD
+redis.development.secret = env.REDISSECRET
 
 aws = {}
 aws.development = {}
