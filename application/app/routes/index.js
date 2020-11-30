@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+var redis = require('./redis.js');
 var os = require('os');
 //routing
 // router.use('/user', require('./user/index.js'));
@@ -12,14 +13,21 @@ router.get('/', (req,res)=>{
     res.end(`<h1>I'm ${os.hostname()}</h1>`);
 });
 
-var redis_cache = require('../../database/redis/index');
+router.use(session({
+    tore: new RedisStore({
+        client: redis,
+        host: 'localhost',
+        port: 6379,
+        prefix : "session:",
+        db : 0,
+        saveUninitialized: false,
+        resave: false
 
-router.post('/cache_test', (req,res)=>{
-    redis_cache.set_cache(req,res);
-});
-router.get('/cache_test/:key', (req,res)=>{
-    redis_cache.get_cache(req,res);
-})
+    }),
+    secret : 'UFO',
+    cookie : { maxAge: 2592000000 }
+}));
+
 
 router.use('/user', require('./user'));
 router.use('/wallet', require('./wallet'));
