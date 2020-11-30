@@ -11,6 +11,7 @@
 # DBHOST = mysql
 # DBDIALECT = mysql
 # DBDATABASE = ufo
+# DBPORT = 3306
 
 # REDISPORT = 6379
 # REDISHOST = redis
