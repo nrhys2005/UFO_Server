@@ -71,11 +71,11 @@ exports.signup = (req, res) => {
         });
     });
   });
-  //cutomer
-  var customer_id = "custmer"; //customer_id 안겹치는 문자열로 넣어야함.
-  models.User.create({
-    kakao_id: req.body.kakao_id,
-    customer_id: customer_id,
+};
+//회원탈퇴
+exports.sigonut = (req, res) => {
+  models.User.destroy({
+    where: { kakao_id: req.session.kakao_id },
   })
     .then((result) => {
       console.log(result);
@@ -86,6 +86,7 @@ exports.signup = (req, res) => {
       res.send(false);
     });
 };
+
 //결제pw 등록
 exports.update_transaction_pw = (req, res) => {
   var password = req.body.transaction_pw;
@@ -98,7 +99,7 @@ exports.update_transaction_pw = (req, res) => {
           transaction_pw: hash,
         },
         {
-          where: { kakao_id: req.body.kakao_id },
+          where: { kakao_id: req.session.kakao_id },
         }
       )
         .then((result) => {
@@ -116,7 +117,7 @@ exports.update_transaction_pw = (req, res) => {
 exports.check_transaction_pw = (req, res) => {
   models.User.findOne({
     where: {
-      kakao_id: req.body.kakao_id,
+      kakao_id: req.session.kakao_id ,
     },
   })
     .then((result) => {
@@ -134,8 +135,8 @@ exports.check_transaction_pw = (req, res) => {
 };
 
 //sales 인증(미완)
-exports.regist_sales = (req, res) => {
-  var sales_id = req.body.kakao_id + "_s";
+exports.update_sales = (req, res) => {
+  var sales_id =  req.session.kakao_id + "_s";
   bcrypt.genSalt(saltRounds, function (err, salt) {
     if (err) return res.send(false);
     bcrypt.hash(sales_id, salt, function (err, hash) {
@@ -146,7 +147,7 @@ exports.regist_sales = (req, res) => {
           sales_id: hash,
         },
         {
-          where: { kakao_id: req.body.kakao_id },
+          where: { kakao_id: req.session.kakao_id },
         }
       )
         .then((result) => {
@@ -159,34 +160,4 @@ exports.regist_sales = (req, res) => {
         });
     });
   });
-  //var sales_id = "sales"  //customer_id 안겹치는 문자열로 넣어야함.
 };
-//회원탈퇴
-exports.sigonut = (req, res) => {
-  models.User.destroy({
-    where: { kakao_id: req.body.kakao_id },
-  })
-    .then((result) => {
-      console.log(result);
-      res.send(true);
-    })
-    .catch((error) => {
-      console.log(error);
-      res.send(false);
-    });
-};
-
-//check 현재는 안씀
-/*
-exports.check = (req, res) => {
-    models.User.findOne({
-        where: { email: req.params.email }
-    }).then((result) => {
-        console.log(result);
-        res.send(true);
-    }).catch((error) => {
-        console.log(error);
-        res.send(false);
-    });
-}
-*/

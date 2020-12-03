@@ -11,6 +11,6 @@ router.post('/signup', user.signup)
 router.delete('/sigonut', user.sigonut)
 router.put('/update_transaction_pw', user.update_transaction_pw)
 router.post('/check_transaction_pw', user.check_transaction_pw)
-router.post('/regist_sales', user.regist_sales)
+router.post('/update_sales', user.update_sales)
 //router.get('/signup/check/:id', user.check)
 
