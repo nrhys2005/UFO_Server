@@ -3,43 +3,60 @@ const fs = require('fs');
 const multer = require('multer')
 const multerS3 = require('multer-s3')
 const AWS = require('./aws')
+const config = require('../../bin/config').aws.development
 
 exports.upload_module = multer({
     storage: multerS3({
         s3: AWS.s3,
-        bucket: 'uni-fest-one',
+        bucket: config.bucket,
         key: (req, file, cb) => {
             cb(null, Math.floor(Math.random() * 1000).toString() + Date.now().toString())
         }
     })
-});
+})
 
-exports.get_store = (req, res) => {
+exports.get_all_store = (req, res) => {
     models.Store.findAll({
         where:{
             festival_id: req.params.id
         },
     }).then((result) => {
         var data = JSON.parse(JSON.stringify(result));
-        res.status(200).json(data);
+        res.json(data);
     }).catch((err) => {
         console.log(err);
-        res.status(500).json({ "result": "fail" });
+        res.json({ "result": "fail" });
     });
 };
 
+exports.get_storeby_id = (req, res) => {
+
+    models.Store.findOne({
+        where: {
+            id: req.params.store_id
+        },
+    }).then((result) => {
+        var data = JSON.parse(JSON.stringify(result));
+        res.json(data);
+    }).catch((err) => {
+        console.log(err);
+        res.json({ "result": "fail" });
+    })
+};
+
 exports.regist_store = (req, res) => {
-    var image_url = "boothic1";
+    
+    let file = req.file
 
     models.Store.create({
         name: req.body.name,
-        img_url: image_url,
+        img_url: file.key,
         desc: req.body.desc,
         start_time: req.body.start_time,
         end_time: req.body.end_time,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
-        festival_id: req.body.festival_id,
+        festival_id: req.params.id,
     }).then((result) => {
         console.log(result);
         res.send(true);
@@ -50,9 +67,12 @@ exports.regist_store = (req, res) => {
 };
 
 exports.update_store = (req, res) => {
+
+    let file = req.file
+
     models.Store.update({
         name: req.body.name,
-        img_url: image_url,
+        img_url: file.key,
         desc: req.body.desc,
         start_time: req.body.start_time,
         end_time: req.body.end_time,

@@ -8,9 +8,9 @@ AWS.config.update({
     region: config.region
 })
 
-AWS.config.credentials = new AWS.ChainableTemporaryCredentials({
-    params: { RoleArn: 'arn:aws:iam::829454201921:role/role-ufo-s3' }
-})
+// AWS.config.credentials = new AWS.ChainableTemporaryCredentials({
+//     params: { RoleArn: 'arn:aws:iam::829454201921:role/role-ufo-s3' }
+// })
 
 const s3 = new AWS.S3()
 

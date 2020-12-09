@@ -27,7 +27,7 @@ router.use(session({
 }));
 
 
-router.use('/user', require('./user'));
+// router.use('/user', require('./user'));
 router.use('/wallet', require('./wallet'));
 router.use('/festival', require('./festival'));
 

@@ -19,6 +19,7 @@ services:
       - bash
       - -c
       - |
+        npm install
         /wait-for-it.sh mysql:3307 -t 20
         npm start
 
