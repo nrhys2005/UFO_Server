@@ -10,7 +10,7 @@ var sequelize = new Sequelize(config.database, config.username, config.password,
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.User = require('./user')(sequelize, Sequelize);
+// db.User = require('./user')(sequelize, Sequelize);
 db.Store = require('./store')(sequelize, Sequelize);
 db.Menu = require('./menu')(sequelize, Sequelize);
 db.Festival = require('./festival')(sequelize, Sequelize);
