@@ -1,6 +1,9 @@
 .DS_Store
-#DB
+.http
+
+# DB & redis
 db
+redis_data
 
 # Logs
 logs
